@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Credentials Autofill",
-    "version": "1.0.0.3",
+    "version": "1.0.0.4",
     "description": "Enable auto fill credentials",
     "browser_action": {
         "default_icon": "icons/icon16.png",
