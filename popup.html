@@ -2,26 +2,50 @@
 <html>
     <head>
         <script src="jquery/jquery-3.2.0.min.js"></script>
+        <script src="jquery/jquery.toast.min.js"></script>
+        <script src="bootstrap/js/popper.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="popup_script.js"></script>
+
         <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-theme.min.css" />
+        <link rel="stylesheet" type="text/css" href="bootstrap/css/open-iconic-bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="jquery/jquery.toast.min.css" />
         <link rel="stylesheet" type="text/css" href="popup.css" />
     </head>
-    <body>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4>Add a new host and credentials for it. Each form input containing "user" or "password" in its name attribute will be filled with these data after focus event appropriately.</h4>
-            </div>
-            <div class="panel-body">
-                <div id="form-container"></div>
 
+    <body>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Credentials auto-fill</h4>
+                <p class="card-text">Add a new host and credentials for it. Each form input containing "user" or "password" in its name attribute will be filled with these data after focus event appropriately.</p>
+                <div id="form-container"></div>
                 <div class="aling-right">
-                    <button id="btnAdd" class="btn btn-success" title="Add a new row"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    <button id="btnAdd" class="btn btn-success btn-sm" title="Add a new row"><span class="oi oi-plus" aria-hidden="true"></span> Add</button>
                 </div>
             </div>
-            <div class="panel-footer text-right">
-                <button id="btnSave" class="btn btn-primary" title="Save changes"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save</button>
+            <div class="card-footer text-right">
+                <button id="btnSave" class="btn btn-primary btn-sm" title="Save changes"><span class="oi oi-book" aria-hidden="true"></span> Save</button>
             </div>
         </div>
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="removeModal" tabindex="10" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                    </div>
+                    <div class="modal-body">
+                        Do you really want to remove the row?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-primary btn-sm">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
     </body>
 </html>
