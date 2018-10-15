@@ -1,6 +1,15 @@
-var CURRENT_URL = '';
-function getCurrentHost() {
-    return CURRENT_URL.replace(/^(.*:)\/\/([A-Za-z0-9\-\.]+)(:[0-9]+)?(.*)$/, '$2');
+function setIconDisabled (disabled) {
+    chrome.browserAction.setIcon({
+        path: `icons/icon16${disabled ? '_disabled' : ''}.png`
+    });
+}
+
+function getCredential (tab, host) {
+    let
+        credentials = JSON.parse(localStorage.getItem('credentials')),
+        hostname = tab ? tab.url.replace(/^(.*:)\/\/([A-Za-z0-9\-\.]+)(:[0-9]+)?(.*)$/, '$2') : host,
+        credential = credentials.filter(item => item.host === hostname)[0];
+    return credential;
 }
 
 chrome.runtime.onInstalled.addListener(function () {
@@ -9,19 +18,18 @@ chrome.runtime.onInstalled.addListener(function () {
 });
 
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    if (message === 'getCredentials') {
+    if (message.getCredentialsForHost !== undefined) {
+        let credential = getCredential(null, message.getCredentialsForHost);
+        setIconDisabled(!credential);
         sendResponse({
-            message: localStorage.getItem('credentials'),
-            sender: "event_script.js"
-        });
-    } else if (message === 'getHost') {
-        sendResponse({
-            message: getCurrentHost(),
+            message: credential,
             sender: "event_script.js"
         });
     }
 });
 
-chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
-    CURRENT_URL = tab.url;
+chrome.tabs.onActivated.addListener(function () {
+    chrome.tabs.getSelected(null, function (tab) {
+        setIconDisabled(!getCredential(tab));
+    });
 });

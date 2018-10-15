@@ -22,11 +22,6 @@ function onRemoveClicked() {
     form.remove();
 }
 function onSaveClicked() {
-    // chrome.runtime.sendMessage('getHost', function (responseObject) {
-    //     var host = responseObject.message;
-    //     console.log(host);
-    // });
-
     localStorage.setItem('credentials', JSON.stringify(collectCredentials()));
     $.toast({
         text: "Changes were successfully saved!", // Text that is to be shown in the toast

@@ -1,10 +1,8 @@
 (function() {
-	chrome.runtime.sendMessage('getCredentials', function(responseObject) {
-		var credentials = JSON.parse(responseObject.message);
-		var hostname = window.location.hostname;
-		var credential = credentials.filter(function(item){
-			return item.host === hostname;
-		})[0];
+	chrome.runtime.sendMessage({
+		getCredentialsForHost: window.location.hostname
+	}, function(responseObject) {
+		var credential = responseObject && responseObject.message;
 		if (credential) {
 			var user = credential.user;
 			var password = credential.password;
@@ -20,4 +18,3 @@
 		}
 	});
 })();
-
